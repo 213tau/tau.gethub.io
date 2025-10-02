@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shared Image Viewer</title>
+  <title>Share Target</title>
 </head>
 <body>
-  <h1>Received Shared Image</h1>
-  <img id="sharedImage" style="max-width: 100%; margin-top: 20px;" />
+  <h1>Receiving shared files...</h1>
   <script>
-    const params = new URLSearchParams(location.search);
-    const imageUrl = params.get('image');
-    if (imageUrl) {
-      document.getElementById('sharedImage').src = imageUrl;
+    if (window.location.pathname.endsWith("share-target.html")) {
+      navigator.serviceWorker?.ready.then(reg => {
+        // forward POST data from service worker to your app (index.html)
+        console.log("Share target opened");
+        window.location.href = "index.html";
+      });
     }
   </script>
 </body>
