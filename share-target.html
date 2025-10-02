@@ -11,9 +11,11 @@
       navigator.serviceWorker?.ready.then(reg => {
         // forward POST data from service worker to your app (index.html)
         console.log("Share target opened");
+        alert("tau");
         window.location.href = "index.html";
       });
     }
   </script>
 </body>
 </html>
+
