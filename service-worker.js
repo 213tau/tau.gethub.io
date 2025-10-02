@@ -2,6 +2,7 @@ const CACHE_NAME = 'pwa-fs-cache-v1';
 const FILES_TO_CACHE = [
   './',
   './index.html',
+  './share-target.html',
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png'
@@ -41,3 +42,4 @@ self.addEventListener('fetch', event => {
     );
   }
 });
+
