@@ -25,7 +25,7 @@
       "files": [
         {
           "name": "file",
-          "accept": ["*/*"]
+          "accept": ["image/*", "application/pdf", "application/octet-stream"]
         }
       ]
     }
