@@ -25,11 +25,12 @@
       "files": [
         {
           "name": "file",
-          "accept": ["image/*", "application/pdf", , "application/octet-stream"]
+          "accept": ["*/*"]
         }
       ]
     }
   }
 }
+
 
 
