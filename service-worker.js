@@ -31,6 +31,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
+  // Handle share-target POST
   if (event.request.method === 'POST' && url.pathname.endsWith('/share-target.html')) {
     event.respondWith(
       (async () => {
@@ -40,6 +41,29 @@ self.addEventListener('fetch', event => {
         return Response.redirect(`/share-target.html?image=${encodeURIComponent(imageUrl)}`, 303);
       })()
     );
+    return;
+  }
+
+  // Handle GET requests: use cache first, fallback to network
+  if (event.request.method === 'GET') {
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        return cachedResponse || fetch(event.request).then(response => {
+          // Optionally cache new responses
+          return caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, response.clone());
+            return response;
+          });
+        }).catch(() => {
+          // Optional: fallback to index.html if offline
+          if (event.request.mode === 'navigate') {
+            return caches.match('./index.html');
+          }
+        });
+      })
+    );
   }
 });
+
+
 
