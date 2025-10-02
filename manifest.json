@@ -24,11 +24,12 @@
     "params": {
       "files": [
         {
-          "name": "image",
-          "accept": ["image/*", "application/pdf"]
+          "name": "file",
+          "accept": ["image/*", "application/pdf", , "application/octet-stream"]
         }
       ]
     }
   }
 }
+
 
